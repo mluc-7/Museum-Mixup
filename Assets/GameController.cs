@@ -22,6 +22,12 @@ public class GameController : MonoBehaviour
     public bool artifact3Check;
     public Image artifact3Image;
     public GameObject gameWinPanel;
+    public int hammerHits;
+    public string enteredMorse;
+    public int safePoints;
+    private bool safe1;
+    private bool safe2;
+    private bool safe3;
 
     public Camera currentCamera;
     void Awake()
@@ -34,6 +40,10 @@ public class GameController : MonoBehaviour
         artifact1Check = false;
         artifact2Check = false;
         artifact3Check = false;
+        safe1 = false;
+        safe2 = false;
+        safe3 = false;
+
     }
 
     void Update()
@@ -62,17 +72,30 @@ public class GameController : MonoBehaviour
 
         if (currentCamera == camera2) 
         {
-            if (Input.GetKeyDown(KeyCode.Space)) 
+            if (Input.GetKeyDown(KeyCode.Q)) 
             {
-                artifact1Check = true;
-                artifact1Image.gameObject.SetActive(true);
-                artifact1Object.SetActive(false);
+                hammerHits++;
+                if (hammerHits == 5)
+                {
+                    artifact1Check = true;
+                    artifact1Image.gameObject.SetActive(true);
+                    artifact1Object.SetActive(false);
+                }
             }
         }
 
         else if (currentCamera == camera3)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                enteredMorse += "W";
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                enteredMorse += "E";
+            }
+
+            if (enteredMorse == "WWWEEEWWW")
             {
                 artifact2Check = true;
                 artifact2Image.gameObject.SetActive(true);
@@ -82,12 +105,45 @@ public class GameController : MonoBehaviour
 
         else if (currentCamera == camera4)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.R) && safe1 == false)
             {
-                artifact3Check = true;
-                artifact3Image.gameObject.SetActive(true);
-                artifact3Object.SetActive(false);
+                safePoints++;
+                safe1 = true;
             }
+
+            if (Input.GetKeyDown(KeyCode.T) && safe2 == false)
+            {
+                safePoints++;
+                safe2 = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Y) && safe3 == false)
+            {
+                safePoints++;
+                safe3 = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                safePoints++;
+                if (safePoints == 4)
+                {
+                    artifact3Check = true;
+                    artifact3Image.gameObject.SetActive(true);
+                    artifact3Object.SetActive(false);
+                }
+            }
+
+
+        }
+
+        if (currentCamera != camera3)
+        {
+            enteredMorse = "";
+        }
+        if (currentCamera != camera4)
+        {
+            safePoints = 0;
         }
 
         if (artifact1Check && artifact2Check && artifact3Check)

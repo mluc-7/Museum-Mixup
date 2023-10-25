@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public Camera camera3;
     public Camera camera4;
     public Camera camera5;
+    public Camera camera6;
     public GameObject artifact1Object;
     public bool artifact1Check;
     public Image artifact1Image;
@@ -32,11 +33,12 @@ public class GameController : MonoBehaviour
     public Camera currentCamera;
     void Awake()
     {
-        currentCamera = camera1;
-        camera2.enabled = false;
+        currentCamera = camera2;
+        camera1.enabled = false;
         camera3.enabled = false;
         camera4.enabled = false;
         camera5.enabled = false;
+        camera6.enabled = false;
         artifact1Check = false;
         artifact2Check = false;
         artifact3Check = false;
@@ -69,8 +71,12 @@ public class GameController : MonoBehaviour
         {
             SwitchCamera(camera5);
         }
+        else if (Input.GetKey(KeyCode.Alpha6) && Input.GetKey(KeyCode.LeftShift))
+        {
+            SwitchCamera(camera6);
+        }
 
-        if (currentCamera == camera2) 
+        if (currentCamera == camera1) 
         {
             if (Input.GetKeyDown(KeyCode.Q)) 
             {
@@ -84,7 +90,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        else if (currentCamera == camera3)
+        else if (currentCamera == camera4)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -103,7 +109,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        else if (currentCamera == camera4)
+        else if (currentCamera == camera6)
         {
             if (Input.GetKeyDown(KeyCode.R) && safe1 == false)
             {
@@ -137,11 +143,11 @@ public class GameController : MonoBehaviour
 
         }
 
-        if (currentCamera != camera3)
+        if (currentCamera != camera4)
         {
             enteredMorse = "";
         }
-        if (currentCamera != camera4)
+        if (currentCamera != camera6)
         {
             safePoints = 0;
         }

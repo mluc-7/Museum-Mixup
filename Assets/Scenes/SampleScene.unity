@@ -12557,7 +12557,7 @@ PrefabInstance:
     - target: {fileID: -6928645955073475597, guid: adb2c5a01b4dd714ca6b38fbdc6e9966, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 8556262120643298411, guid: adb2c5a01b4dd714ca6b38fbdc6e9966, type: 3}
+      objectReference: {fileID: 2100000, guid: eff88356d186709408f8554c3795ea35, type: 2}
     - target: {fileID: 919132149155446097, guid: adb2c5a01b4dd714ca6b38fbdc6e9966, type: 3}
       propertyPath: m_Name
       value: Obraz_LP_AO
@@ -14411,6 +14411,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6928645955073475597, guid: adb2c5a01b4dd714ca6b38fbdc6e9966, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c22d33a3f03cc204f96526e8832e8b09, type: 2}
     - target: {fileID: 919132149155446097, guid: adb2c5a01b4dd714ca6b38fbdc6e9966, type: 3}
       propertyPath: m_Name
       value: Obraz_LP_AO
@@ -15157,7 +15161,7 @@ PrefabInstance:
     - target: {fileID: -6928645955073475597, guid: adb2c5a01b4dd714ca6b38fbdc6e9966, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 17796004ac38df843a0c90d5fce3f905, type: 2}
+      objectReference: {fileID: 2100000, guid: 07557a6319e68324bbe547306f75dc4e, type: 2}
     - target: {fileID: 919132149155446097, guid: adb2c5a01b4dd714ca6b38fbdc6e9966, type: 3}
       propertyPath: m_Name
       value: Obraz_LP_AO (1)

@@ -13,6 +13,10 @@ public class GameController : MonoBehaviour
     public Camera camera4;
     public Camera camera5;
     public Camera camera6;
+    private bool atRoom1;
+    private bool atRoom2;
+    private bool atRoom3;
+    public int cameraNumber;
     public GameObject artifact1Object;
     public bool artifact1Check;
     public Image artifact1Image;
@@ -33,7 +37,8 @@ public class GameController : MonoBehaviour
     public Camera currentCamera;
     void Awake()
     {
-        currentCamera = camera2;
+        currentCamera = camera1;
+        cameraNumber = 1;
         camera1.enabled = false;
         camera3.enabled = false;
         camera4.enabled = false;
@@ -45,40 +50,79 @@ public class GameController : MonoBehaviour
         safe1 = false;
         safe2 = false;
         safe3 = false;
+        atRoom1 = false;
+        atRoom2 = false;
+        atRoom3 = false;
 
     }
 
     void Update()
     {
-        // Check for input to switch cameras
-        if (Input.GetKey(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift))
-        {
-            SwitchCamera(camera1);
-        }
-        else if (Input.GetKey(KeyCode.Alpha2) && Input.GetKey(KeyCode.LeftShift))
+        currentCamera = camera1;
+        /*
+        if (Input.GetKeyDown(KeyCode.Space) && atRoom1 == false && artifact1Check == false)
         {
             SwitchCamera(camera2);
+            atRoom1 = true;
         }
-        else if (Input.GetKey(KeyCode.Alpha3) && Input.GetKey(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.Space) && atRoom1 == true & artifact1Check == true)
         {
             SwitchCamera(camera3);
         }
-        else if (Input.GetKey(KeyCode.Alpha4) && Input.GetKey(KeyCode.LeftShift))
+
+        else if(Input.GetKeyDown(KeyCode.Space) && atRoom2 == false && artifact1Check == true)
         {
             SwitchCamera(camera4);
+            atRoom2 = true;
         }
-        else if (Input.GetKey(KeyCode.Alpha5) && Input.GetKey(KeyCode.LeftShift))
+        else if(Input.GetKeyUp(KeyCode.Space) && atRoom2 == true & artifact2Check == true && artifact1Check == true)
         {
             SwitchCamera(camera5);
         }
-        else if (Input.GetKey(KeyCode.Alpha6) && Input.GetKey(KeyCode.LeftShift))
+
+        else if(Input.GetKeyDown(KeyCode.Space) && atRoom3 == false && artifact1Check == true)
+        {
+            SwitchCamera(camera6);
+            atRoom3 = true;
+        }
+        else if(Input.GetKeyUp(KeyCode.Space) && atRoom3 == true)
+        {
+            SwitchCamera(camera1);
+        }
+        /* Check for input to switch cameras
+        if (cameraNumber == 1)
+        {
+            
+        }
+        else if (cameraNumber == 2)
+        {
+            
+        }
+        else if (cameraNumber == 3)
+        {
+            SwitchCamera(camera3);
+        }
+        else if (cameraNumber == 4)
+        {
+            SwitchCamera(camera4);
+        }
+        else if (cameraNumber == 5)
+        {
+            SwitchCamera(camera5);
+        }
+        else if (cameraNumber == 6)
         {
             SwitchCamera(camera6);
         }
-
-        if (currentCamera == camera1) 
+        else if (cameraNumber == 7)
         {
-            if (Input.GetKeyDown(KeyCode.Q)) 
+            SwitchCamera(camera1);
+            cameraNumber = 1;
+        }*/
+
+        if (currentCamera == camera2) 
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 hammerHits++;
                 if (hammerHits == 5)
@@ -92,11 +136,11 @@ public class GameController : MonoBehaviour
 
         else if (currentCamera == camera4)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 enteredMorse += "W";
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 enteredMorse += "E";
             }
@@ -111,25 +155,25 @@ public class GameController : MonoBehaviour
 
         else if (currentCamera == camera6)
         {
-            if (Input.GetKeyDown(KeyCode.R) && safe1 == false)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && safe1 == false)
             {
                 safePoints++;
                 safe1 = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.T) && safe2 == false)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && safe2 == false && safe1 == true)
             {
                 safePoints++;
                 safe2 = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Y) && safe3 == false)
+            if (Input.GetKeyDown(KeyCode.RightArrow) && safe3 == false && safe2 == true)
             {
                 safePoints++;
                 safe3 = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.DownArrow) && safe3 == true)
             {
                 safePoints++;
                 if (safePoints == 4)
